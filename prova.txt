@@ -1,0 +1,104 @@
+<dependency>
+	<groupId>org.apache.tomcat.embed</groupId>
+	<artifactId>tomcat-embed-jasper</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>javax.servelt<grouppId>
+	<artifactId>jstl<artifactId</artifactId>
+</dependency>
+
+
+---entidade livro
+private String isbn;
+private String nome
+private String autor;
+
+---Classe controle
+@Controller
+public Classe LivrosController{
+
+ private final LivroService livroServiceImpl;
+
+public LivroCotroller(LivroServiceImpl livroServiceIml){
+
+	this.livroServiceImpl = livroServiceImpl;
+
+
+{
+
+@GetMapping("/livros")
+public String listarLivros(Model model){
+
+	model.addAtribute("livros", livroServiceImpl.listarLivros());
+	return "listar-livros";
+
+}
+}
+
+
+
+
+---Criando a interface e classr de serviço do crud (livro)
+
+
+public interface LivroService {
+
+	public List<Livros> listarLivros();
+
+}
+
+---package br.edu.ifgoiano.servico;
+
+
+@Service
+public class LivroServiceImpl implements LivroService{
+
+	static List<livro> livros = new ArrayList<livro>();
+	
+	public LivroServiceImpl(){
+
+		Livro livro1 = new Livro();
+		livro1.setIsbn("8550804606");
+		livro1.setNome("Arquitetura Limpa")
+		livro1.setAutor("Robert Martin");
+
+		livros.add(livro1);
+
+		Livro livro2 = new Livro();
+		livro2.setIsbn("8543024978");
+		livro2.setNome("Engenharia de Software");
+		livro2.setAutor("Ian Sommerviller");
+
+		livros.add(livro2);
+	}
+
+	public List<Livro> listarLivros (){
+		return livros;
+	}
+
+
+}
+
+
+------------------------------FRONT-END---------------------------
+
+--> No arquivo jsp "listar-livros.jsp
+	<table>
+		<thead>
+			<tr>
+			 <th>ISBN</th>
+			 <th>Nome</th>
+			 <th>Autor</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		  <c:forEache items="${livros} var="livro">
+			<tr>
+				<td>
+
+
+
+
+	</table>
